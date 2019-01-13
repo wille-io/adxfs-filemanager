@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include "header.h"
@@ -7,7 +6,6 @@
 #include "VFI.h"
 #include <QLayout>
 #include <QVBoxLayout>
-
 
 
 namespace Ui {
@@ -19,12 +17,22 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QString device, QWidget *parent = 0);
     ~MainWindow();
     RDBAFake* rawBlockDeviceAccessor;
     VFI* getRootVFI(ubyte1 deviceID);
 
-    int finalPosition(VFI* vfi, int offset, bool bullshit = true);
+    bool findFreeINode(int &freeINode);
+
+    int finalPositionFIT(int inode, int offset);
+    int finalPositionFDT(int inode, int offset);
+
+    /* PRIVATE, ONLY CLASS USES THIS: */ int finalPosition(int block, int offset);
+
+
+    //int finalPositionFDT(VFI* vfi, int offset);
+
+
     ubyte1 readByte(int finalPosition);
     bool writeByte(int finalPosition, ubyte1 value);
 
@@ -36,11 +44,11 @@ public:
 public slots:
     void slotOpenVFI(VFI* vfi);
     void slotReplaceVFI(VFI* vfi);
-    //void slotDeleteVFI(VFI* vfi);
+    void slotDeleteVFI(VFI* vfi);
+    void slotFormatDisk();
+    void slotAddFile();
 
 
 private:
     Ui::MainWindow *ui;
 };
-
-#endif // MAINWINDOW_H

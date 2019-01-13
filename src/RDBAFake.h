@@ -7,9 +7,10 @@
 class RDBAFake
 {
 public:
-    RDBAFake();
+    RDBAFake(QString file);
     ~RDBAFake();
 
+    QString filename;
     QFile* file;
     ubyte1 getByte(int ingnoredDeviceID, int position);
     void setByte(ubyte1 deviceType, int position, ubyte1 val);

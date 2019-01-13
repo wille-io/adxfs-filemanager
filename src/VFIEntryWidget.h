@@ -20,14 +20,15 @@ public:
 
     QPushButton* pbOpen;
     QPushButton* pbReplace;
-    //QPushButton* pbDelete;
+    QPushButton* pbDelete;
 
 signals:
     void signalOpen(VFI* vfi);
     void signalReplace(VFI* vfi);
-    //void signalDelete(VFI* vfi);
+    void signalDelete(VFI* vfi);
 
 public slots:
     void slotOpen();
     void slotReplace();
+    void slotDelete();
 };

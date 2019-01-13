@@ -17,14 +17,14 @@ VFIEntryWidget::VFIEntryWidget(VFI* vfi)
     pbReplace = new QPushButton("Replace");
     connect(pbReplace, SIGNAL(clicked()), this, SLOT(slotReplace()));
 
-    /*pbDelete = new QPushButton("Delete");
-    connect(pbOpen, SIGNAL(clicked()), this, SIGNAL(signalDelete(VFI*)));
-    */
+    pbDelete = new QPushButton("Delete");
+    connect(pbDelete, SIGNAL(clicked()), this, SLOT(slotDelete()));
+
 
     lLayout->addWidget(new QLabel(vfi->nodeName));
     lLayout->addWidget(pbOpen);
     lLayout->addWidget(pbReplace);
-    //lLayout->addWidget(pbDelete);
+    lLayout->addWidget(pbDelete);
 }
 
 void VFIEntryWidget::slotOpen()
@@ -34,8 +34,12 @@ void VFIEntryWidget::slotOpen()
 
 void VFIEntryWidget::slotReplace()
 {
-    qDebug() << "CALLED!";
     emit signalReplace(vfi);
+}
+
+void VFIEntryWidget::slotDelete()
+{
+    emit signalDelete(vfi);
 }
 
 VFIEntryWidget::~VFIEntryWidget()
