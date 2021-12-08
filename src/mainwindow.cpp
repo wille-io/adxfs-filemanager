@@ -93,7 +93,7 @@ VFI* MainWindow::getRootVFI(ubyte1 deviceID) // for initializers
                 children->deviceID = deviceID;
                 children->fileSize = 0; // temp
                 children->fileSystemType = 123; //ardunix::filesystem::filesystemtype::adxFS;
-                children->fileType = 2; // ardunix::filesystem::filetype::file; // FUCK... I forgot to teach adxFS what files and directories are... temp!!
+                children->fileType = 2; // ardunix::filesystem::filetype::file; // I forgot to teach adxFS what files and directories are... temp!!
                 children->iNode = fitBlock; // as the iNode is the fitBlock
                 //Serial.print("fit block = "); Serial.println((long)fitBlock);
                 children->lba = 0; // don't care
